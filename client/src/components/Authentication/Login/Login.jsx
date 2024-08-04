@@ -3,27 +3,31 @@ import googleIcon from "../../../assets/google-icon.png";
 import { useState } from "react";
 import { auth, provider } from "../../../../firebase/firebaseConfig";
 import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isForgotPass, setIsForgotPass] = useState(false);
+  const navigate = useNavigate();
 
   // Method To Handle Login Via Third Party Auth
-  const loginViaAuth = async (type) => {
+  const loginViaAuth = async () => {
     // HANDLE GOOGLE & GITHUB SIGN VIA FIREBASE
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+
+      navigate("/", { replace: true });
       console.log("User:", user);
     } catch (error) {
       console.error("Error signing in:", error.message);
     }
   };
 
+  // Handle Login & Password Authentication
   const handleLogin = (e) => {
     e.preventDefault();
-
     console.log(email, password);
   };
 
@@ -139,10 +143,7 @@ const Login = ({ setIsLogin }) => {
 
             {/* Login Via Github */}
             <div className="button-container">
-              <button
-                className="github-button"
-                onClick={() => loginViaAuth("Github")}
-              >
+              <button className="github-button" onClick={() => loginViaAuth()}>
                 <img
                   src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                   alt="GitHub logo"
@@ -154,10 +155,7 @@ const Login = ({ setIsLogin }) => {
 
             {/* Login Via Google */}
             <div className="media-options">
-              <button
-                onClick={() => loginViaAuth("Google")}
-                className="google-button"
-              >
+              <button onClick={() => loginViaAuth()} className="google-button">
                 <img src={googleIcon} alt="" className="google-logo" />
                 <span>Login with Google</span>
               </button>
