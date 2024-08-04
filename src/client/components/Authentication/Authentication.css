@@ -134,51 +134,48 @@ form {
   color: #8b8b8b;
   padding: 0 15px;
 }
-.media-options button {
+
+.button-container {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-.media-options button:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-button.facebook {
+.github-button,
+.google-button {
+  display: block;
+  width: 100%;
+  background-color: #333;
   color: #fff;
-  background-color: #4267b2;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-button.facebook .facebook-icon {
-  height: 28px;
-  width: 28px;
-  color: #0171d3;
-  font-size: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
+
+.google-button {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
 }
-.facebook-icon,
-img.google-img {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
+
+.github-button:hover {
+  background-color: #444;
 }
-img.google-img {
-  height: 20px;
+
+.google-button:hover {
+  background-color: #d8cece;
+}
+
+.github-logo,
+.google-logo {
   width: 20px;
-  object-fit: cover;
-}
-button.google {
-  border: 1px solid #cacaca;
-}
-button.google span {
-  font-weight: 500;
-  opacity: 0.6;
-  color: #232836;
+  height: 20px;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 400px) {

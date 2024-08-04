@@ -1,7 +1,8 @@
 import "../Authentication.css";
 import googleIcon from "../../../assets/google-icon.png";
-import facebookIcon from "../../../assets/fb-icon.png";
 import { useState } from "react";
+import { auth, provider } from "../../../../firebase/firebaseConfig";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
@@ -9,11 +10,14 @@ const Login = ({ setIsLogin }) => {
   const [isForgotPass, setIsForgotPass] = useState(false);
 
   // Method To Handle Login Via Third Party Auth
-  const loginViaAuth = (type) => {
-    if (type === "Google") {
-      console.log("Google Auth");
-    } else if (type === "Facebook") {
-      console.log("Facebook Auth");
+  const loginViaAuth = async (type) => {
+    // HANDLE GOOGLE & GITHUB SIGN VIA FIREBASE
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User:", user);
+    } catch (error) {
+      console.error("Error signing in:", error.message);
     }
   };
 
@@ -26,10 +30,11 @@ const Login = ({ setIsLogin }) => {
   return (
     <>
       {isForgotPass ? (
+        // FORGOT PASSWORD FORM
         <section className="container forms">
           <div className="form login">
             <div className="form-content">
-              <header>Login</header>
+              <header>Reset Password</header>
 
               {/* Login Form */}
               <form action="#">
@@ -66,13 +71,14 @@ const Login = ({ setIsLogin }) => {
           </div>
         </section>
       ) : (
+        // LOGIN FORM
         <section className="container forms">
           <div className="form login">
             <div className="form-content">
               <header>Login</header>
 
               {/* Login Form */}
-              <form action="#">
+              <div>
                 <div className="field input-field">
                   <input
                     type="email"
@@ -108,7 +114,7 @@ const Login = ({ setIsLogin }) => {
                 <div className="field button-field">
                   <button onClick={(e) => handleLogin(e)}>Login</button>
                 </div>
-              </form>
+              </div>
 
               {/* Signup Button */}
               <div className="form-link">
@@ -131,17 +137,18 @@ const Login = ({ setIsLogin }) => {
             </div>
             <div className="line"></div>
 
-            {/* Login Via Facebook */}
-            <div className="media-options">
+            {/* Login Via Github */}
+            <div className="button-container">
               <button
-                onClick={() => loginViaAuth("Facebook")}
-                className="field facebook"
+                className="github-button"
+                onClick={() => loginViaAuth("Github")}
               >
                 <img
-                  src={facebookIcon}
-                  className="bx bxl-facebook facebook-icon"
-                ></img>
-                <span>Login with Facebook</span>
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                  alt="GitHub logo"
+                  className="github-logo"
+                />
+                Sign in with GitHub
               </button>
             </div>
 
@@ -149,9 +156,9 @@ const Login = ({ setIsLogin }) => {
             <div className="media-options">
               <button
                 onClick={() => loginViaAuth("Google")}
-                className="field google"
+                className="google-button"
               >
-                <img src={googleIcon} alt="" className="google-img" />
+                <img src={googleIcon} alt="" className="google-logo" />
                 <span>Login with Google</span>
               </button>
             </div>
