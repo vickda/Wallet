@@ -17,17 +17,16 @@ const AppRoutes = ({ user }) => {
     <Router>
       <Routes>
         {/* Redirect authenticated users to homepage */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/signin" />} />
 
         {/* Log-in route */}
         <Route
-          path="/login"
-          exact={true}
+          path="/signin"
           element={user ? <Navigate to="/" /> : <Authentication />}
         />
 
         {/* For 404 Errors */}
-        <Route path="*" exact={true} element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
