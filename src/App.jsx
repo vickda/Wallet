@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Authentication } from "./components/Authentication/Authentication";
+import { Authentication } from "./client/components/Authentication/Authentication";
 
 function App() {
   const [count, setCount] = useState(0);
