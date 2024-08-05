@@ -2,13 +2,15 @@ import "../Authentication.css";
 import googleIcon from "../../../assets/google-icon.png";
 import { useState } from "react";
 import { auth, provider } from "../../../../firebase/firebaseConfig";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isForgotPass, setIsForgotPass] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   // Method To Handle Login Via Third Party Auth
@@ -26,9 +28,41 @@ const Login = ({ setIsLogin }) => {
   };
 
   // Handle Login & Password Authentication
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+
+    if (!email || !password) {
+      return displayErrorMessage("Error: Enter Both Fields");
+    }
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      // Store additional user information in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        firstName,
+        lastName,
+        email,
+      });
+    } catch (error) {
+      displayErrorMessage(error.message);
+    }
+  };
+
+  // Method To Display Error Messages
+  const displayErrorMessage = (errorMessage) => {
+    setError(errorMessage);
+    setIsError(true);
+
+    setTimeout(() => {
+      setIsError(false);
+    }, 2500);
   };
 
   return (
@@ -52,6 +86,8 @@ const Login = ({ setIsLogin }) => {
                   />
                 </div>
 
+                <p className="error-message">{error}</p>
+
                 <div className="form-link">
                   <button
                     style={{
@@ -60,7 +96,10 @@ const Login = ({ setIsLogin }) => {
                       color: "#0171d3",
                       cursor: "pointer",
                     }}
-                    onClick={() => setIsForgotPass(false)}
+                    onClick={() => {
+                      setIsForgotPass(false);
+                      setIsError(false);
+                    }}
                   >
                     Login Here
                   </button>
@@ -110,11 +149,16 @@ const Login = ({ setIsLogin }) => {
                       color: "#0171d3",
                       cursor: "pointer",
                     }}
-                    onClick={() => setIsForgotPass(true)}
+                    onClick={() => {
+                      setIsForgotPass(true);
+                      setIsError(false);
+                    }}
                   >
                     Forgot password?
                   </button>
                 </div>
+
+                {isError && <p className="error-message">{error}</p>}
                 <div className="field button-field">
                   <button onClick={(e) => handleLogin(e)}>Login</button>
                 </div>

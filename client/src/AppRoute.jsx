@@ -11,8 +11,6 @@ import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 const AppRoutes = ({ user }) => {
-  console.log(user);
-
   return (
     <Router>
       <Routes>

@@ -1,12 +1,15 @@
-/* Google Fonts - Poppins */
+/* Import Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+/* Global styles for margin, padding, box-sizing, and font-family */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+/* Container styles to center the form and set background color */
 .container {
   height: 100vh;
   width: 100%;
@@ -16,6 +19,8 @@
   background-color: #4070f4;
   column-gap: 30px;
 }
+
+/* Form container styles */
 .form {
   position: absolute;
   max-width: 430px;
@@ -25,22 +30,46 @@
   background: #fff;
 }
 
+/* Header styles */
 header {
   font-size: 28px;
   font-weight: 600;
   color: #232836;
   text-align: center;
 }
+
+/* Form margin styling */
 form {
   margin-top: 30px;
 }
-.form .field {
+
+/* Container for name fields to align inputs side by side */
+.name-field {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Adjust the gap between inputs as needed */
+}
+
+/* Styles for name input fields */
+.name {
+  flex: 1; /* Make the inputs take up equal space */
+  width: 80%; /* Ensure inputs fit within the container */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* General styles for input and button fields */
+.field {
   position: relative;
   height: 50px;
   width: 100%;
   margin-top: 20px;
   border-radius: 6px;
 }
+
+/* Input and button height, width, and border styling */
 .field input,
 .field button {
   height: 100%;
@@ -51,18 +80,19 @@ form {
   border-radius: 6px;
 }
 
-.field button:hover {
-  opacity: 0.8;
-}
-
+/* Specific styles for input fields */
 .field input {
   outline: none;
   padding: 0 15px;
-  border: 1px solid#CACACA;
+  border: 1px solid #cacaca;
 }
+
+/* Focus state styling for input fields */
 .field input:focus {
   border-bottom-width: 2px;
 }
+
+/* Icon for password visibility toggle */
 .eye-icon {
   position: absolute;
   top: 50%;
@@ -73,27 +103,27 @@ form {
   cursor: pointer;
   padding: 5px;
 }
+
+/* Button field styling */
 .field button {
   color: #fff;
   background-color: #0171d3;
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
+/* Button hover effect */
 .field button:hover {
   background-color: #016dcb;
 }
+
+/* Styling for form link (e.g., login redirect) */
 .form-link {
   text-align: center;
   margin-top: 10px;
 }
 
-.forgot-pass {
-  background: "transparent";
-  border: "none";
-  color: "blue";
-  cursor: "pointer";
-}
-
+/* Styling for the form link text */
 .form-link span {
   font-size: 14px;
   font-weight: 400;
@@ -101,22 +131,18 @@ form {
   background: transparent;
 }
 
-.signupBtn {
-  background: "transparent";
-  border: "none";
-  color: "blue";
-  cursor: "pointer";
-}
-
+/* Link styling within the form */
 .form a {
   color: #0171d3;
   text-decoration: none;
 }
 
+/* Hover effect for form links */
 .form-content a:hover {
   text-decoration: underline;
 }
 
+/* Divider line styling */
 .line {
   position: relative;
   height: 1px;
@@ -124,6 +150,8 @@ form {
   margin: 36px 0;
   background-color: #d4d4d4;
 }
+
+/* Centered "Or" text within the divider line */
 .line::before {
   content: "Or";
   position: absolute;
@@ -135,6 +163,7 @@ form {
   padding: 0 15px;
 }
 
+/* Container for buttons (e.g., social sign-in) */
 .button-container {
   width: 100%;
   display: flex;
@@ -143,6 +172,7 @@ form {
   margin-bottom: 0.5rem;
 }
 
+/* GitHub and Google button styles */
 .github-button,
 .google-button {
   display: block;
@@ -157,20 +187,24 @@ form {
   transition: background-color 0.3s ease;
 }
 
+/* Specific styles for Google button */
 .google-button {
   background-color: white;
   border: 1px solid black;
   color: black;
 }
 
+/* GitHub button hover effect */
 .github-button:hover {
   background-color: #444;
 }
 
+/* Google button hover effect */
 .google-button:hover {
   background-color: #d8cece;
 }
 
+/* Styling for GitHub and Google logos */
 .github-logo,
 .google-logo {
   width: 20px;
@@ -178,6 +212,20 @@ form {
   margin-right: 10px;
 }
 
+/* Error MEssage */
+.error-message {
+  color: #d9534f; /* Red color for error text */
+  background-color: #f2dede; /* Light red background */
+  border: 1px solid #d9534f; /* Red border */
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 10px; /* Padding for spacing inside the error box */
+  font-size: 14px; /* Font size for readability */
+  margin-top: 10px; /* Space above the error message */
+  width: 100%; /* Ensure the error message spans the full width of its container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Responsive adjustments for smaller screens */
 @media screen and (max-width: 400px) {
   .form {
     padding: 20px 10px;
