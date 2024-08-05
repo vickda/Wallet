@@ -1,7 +1,9 @@
 const Home = ({ userName }) => {
+  console.log(userName);
+
   return (
     <>
-      <h1>Hello Home Page {userName}</h1>
+      <h1>Welcome {userName || "User"} To The Dashboard</h1>
     </>
   );
 };

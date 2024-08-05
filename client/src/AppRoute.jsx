@@ -11,11 +11,22 @@ import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 const AppRoutes = ({ user }) => {
+  console.log(user);
+
   return (
     <Router>
       <Routes>
         {/* Redirect authenticated users to homepage */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/signin" />} />
+        <Route
+          path="/"
+          element={
+            user ? (
+              <Home userName={user.displayName} />
+            ) : (
+              <Navigate to="/signin" />
+            )
+          }
+        />
 
         {/* Log-in route */}
         <Route
