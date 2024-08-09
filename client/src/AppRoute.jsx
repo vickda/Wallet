@@ -9,6 +9,7 @@ import {
 import { Authentication } from "./components/Authentication/Authentication";
 import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 const AppRoutes = ({ user }) => {
   console.log(user);
@@ -27,6 +28,8 @@ const AppRoutes = ({ user }) => {
             )
           }
         />
+
+        <Route path="/profile" element={<UserProfile />} />
 
         {/* Log-in route */}
         <Route
