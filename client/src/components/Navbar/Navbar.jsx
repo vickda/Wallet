@@ -46,8 +46,10 @@ const Navbar = ({ links }) => {
           );
         })}
 
-        <li className="nav-item nav-link" onClick={() => handleLogout()}>
-          Signout
+        <li className="nav-item " onClick={() => handleLogout()}>
+          <p className="nav-link" style={{ padding: "0px" }}>
+            Signout
+          </p>
         </li>
       </ul>
     </nav>
