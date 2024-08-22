@@ -6,8 +6,25 @@ import logo from "../../assets/logo.jpg";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 
-const Navbar = ({ links }) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const links = [
+    {
+      id: 1,
+      name: "People",
+      location: "/",
+    },
+    {
+      id: 2,
+      name: "Groups",
+      location: "/group",
+    },
+    {
+      id: 3,
+      name: "User Profile",
+      location: "/profile",
+    },
+  ];
   console.log(links);
 
   const handleClick = () => {

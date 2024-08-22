@@ -10,12 +10,14 @@ import { Authentication } from "./components/Authentication/Authentication";
 import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
+import { Navbar } from "./components/Navbar/Navbar";
 
 const AppRoutes = ({ user }) => {
   console.log(user);
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         {/* Redirect authenticated users to homepage */}
         <Route

@@ -25,7 +25,6 @@ const UserProfile = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="user-profile-container">
         <form onSubmit={handleSubmit} className="user-profile-form">
           <div className="image-column">

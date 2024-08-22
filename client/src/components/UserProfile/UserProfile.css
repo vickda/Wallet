@@ -8,13 +8,6 @@ html {
   background-color: #1a1a1a; /* Dark background for the whole page */
 }
 
-#root {
-  height: 100vh; /* Ensures the root container takes the full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .user-profile-container {
   width: 100%;
   max-width: 600px; /* Limits the width of the form */
