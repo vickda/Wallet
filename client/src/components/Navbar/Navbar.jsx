@@ -45,10 +45,13 @@ const Navbar = () => {
     <nav className="navbar">
       {/* Hamburger & Logo Container */}
       <div className="icon-burgermenu-container">
-        <div onClick={toggleHamburgerMenu} className="nav-icon">
+        <div
+          onClick={toggleHamburgerMenu}
+          className={`nav-hamburgericon ${isOpen && "open"}`}
+        >
           {isOpen ? <FaXmark /> : <FaBars />}
         </div>
-        <Link to="/" className="nav-logo">
+        <Link to="/" className={`nav-logo ${isOpen && "open"}`}>
           <img className="nav-logo" src={logo} alt="Logo" />
         </Link>
       </div>
@@ -58,7 +61,11 @@ const Navbar = () => {
         <ul className="nav-links">
           {links.map(({ id, name, location }) => {
             return (
-              <li key={id} className="nav-link">
+              <li
+                key={id}
+                className="nav-link"
+                onClick={() => setOpen(!isOpen)}
+              >
                 <Link to={location} className="nav-link">
                   {name}
                 </Link>

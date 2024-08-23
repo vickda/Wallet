@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.nav-icon {
+.nav-hamburgericon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,12 +28,10 @@
   outline: none;
   border: none;
   position: relative;
-  z-index: 10;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  -webkit-tap-highlight-color: transparent;
+
+  &.open {
+    z-index: 10;
+  }
 }
 
 .nav-logo {
@@ -44,6 +42,10 @@
   height: auto;
   border-radius: 20%;
   object-fit: contain;
+
+  &.open {
+    z-index: 10;
+  }
 }
 
 .panel {
