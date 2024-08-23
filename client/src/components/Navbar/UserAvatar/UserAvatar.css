@@ -1,0 +1,55 @@
+.navbar-profile {
+  position: relative;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.sign-out-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1000; /* Ensure the menu is on top of other elements */
+  min-width: 150px;
+}
+
+.sign-out-menu.show {
+  display: block;
+}
+
+.sign-out-button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.sign-out-button:hover {
+  background: #ff1a1a;
+}

@@ -3,8 +3,8 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.jpg";
-import { signOut } from "firebase/auth";
-import { auth } from "../../../firebase/firebaseConfig";
+
+import UserAvatar from "./UserAvatar/UserAvatar";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -31,16 +31,6 @@ const Navbar = () => {
     setOpen(!isOpen);
   };
 
-  // Handle Signout when Signout button is clicked
-  const handleLogout = () => {
-    try {
-      signOut(auth);
-      Navigate({ to: "/signin" });
-    } catch (error) {
-      console.log("Unable to Signout", error.message);
-    }
-  };
-
   return (
     <nav className="navbar">
       {/* Hamburger & Logo Container */}
@@ -55,6 +45,8 @@ const Navbar = () => {
           <img className="nav-logo" src={logo} alt="Logo" />
         </Link>
       </div>
+
+      <UserAvatar />
 
       {/* Panel For Hamburger Menu with Option List */}
       <div className={`panel ${isOpen ? "open" : "close"}`}>
