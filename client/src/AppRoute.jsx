@@ -5,10 +5,13 @@ import {
   Route,
   Routes,
   Navigate,
+  Outlet,
 } from "react-router-dom";
 import { Authentication } from "./components/Authentication/Authentication";
 import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
+import UserProfile from "./components/UserProfile/UserProfile";
+import { Navbar } from "./components/Navbar/Navbar";
 
 const AppRoutes = ({ user }) => {
   console.log(user);
@@ -16,26 +19,39 @@ const AppRoutes = ({ user }) => {
   return (
     <Router>
       <Routes>
-        {/* Redirect authenticated users to homepage */}
-        <Route
-          path="/"
-          element={
-            user ? (
-              <Home userName={user.displayName} />
-            ) : (
-              <Navigate to="/signin" />
-            )
-          }
-        />
-
-        {/* Log-in route */}
+        {/* LOGIN */}
         <Route
           path="/signin"
           element={user ? <Navigate to="/" /> : <Authentication />}
         />
 
-        {/* For 404 Errors */}
+        {/* 404 MISSING */}
         <Route path="*" element={<PageNotFound />} />
+
+        {/* Routes For All Pages with Navbar*/}
+        <Route
+          element={
+            <>
+              <Navbar />
+              <Outlet />
+            </>
+          }
+        >
+          {/* HOME */}
+          <Route
+            path="/"
+            element={
+              user ? (
+                <Home userName={user.displayName} />
+              ) : (
+                <Navigate to="/signin" />
+              )
+            }
+          />
+
+          {/* USER PROFILE */}
+          <Route path="/profile" element={<UserProfile />} />
+        </Route>
       </Routes>
     </Router>
   );

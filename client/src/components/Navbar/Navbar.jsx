@@ -1,59 +1,80 @@
 import React, { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FaBars, FaXmark } from "react-icons/fa6";
 import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.jpg";
-import { signOut } from "firebase/auth";
-import { auth } from "../../../firebase/firebaseConfig";
 
-const Navbar = ({ links }) => {
-  const [open, setOpen] = useState(false);
-  console.log(links);
+import UserAvatar from "./UserAvatar/UserAvatar";
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+const Navbar = () => {
+  const [isOpen, setOpen] = useState(false);
+  const links = [
+    {
+      id: 1,
+      name: "People",
+      location: "/",
+    },
+    {
+      id: 2,
+      name: "Groups",
+      location: "/group",
+    },
+    {
+      id: 3,
+      name: "User Profile",
+      location: "/profile",
+    },
+  ];
 
-  const closeMenu = () => {
-    setOpen(false);
-  };
-
-  const handleLogout = () => {
-    try {
-      signOut(auth);
-      Navigate({ to: "/signin" });
-    } catch (error) {
-      console.log("Unable to Signout", error.message);
-    }
+  // Toggle the visibility of the hamburger menu when the button is clicked
+  const toggleHamburgerMenu = () => {
+    setOpen(!isOpen);
   };
 
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-logo">
-        <img className="nav-logo" src={logo} alt="Logo" />
-      </Link>
-      <div onClick={handleClick} className="nav-icon">
-        {open ? <FiX /> : <FiMenu />}
+      {/* Hamburger & Logo Container */}
+      <div className="icon-burgermenu-container">
+        <div
+          onClick={toggleHamburgerMenu}
+          className={`nav-hamburgericon ${isOpen && "open"}`}
+        >
+          {isOpen ? <FaXmark /> : <FaBars />}
+        </div>
+        <Link to="/" className={`nav-logo ${isOpen && "open"}`}>
+          <img className="nav-logo" src={logo} alt="Logo" />
+        </Link>
       </div>
-      <ul className={open ? "nav-links nav-active" : "nav-links"}>
-        {links.map(({ id, name, location }) => {
-          return (
-            <li key={id} className="nav-item">
-              <Link to={location} className="nav-link" onClick={closeMenu}>
-                {name}
-              </Link>
-            </li>
-          );
-        })}
 
-        <li className="nav-item " onClick={() => handleLogout()}>
-          <p className="nav-link" style={{ padding: "0px" }}>
-            Signout
-          </p>
-        </li>
-      </ul>
+      <UserAvatar />
+
+      {/* Panel For Hamburger Menu with Option List */}
+      <div className={`panel ${isOpen ? "open" : "close"}`}>
+        <ul className="nav-links">
+          {links.map(({ id, name, location }) => {
+            return (
+              <li
+                key={id}
+                className="nav-link"
+                onClick={() => setOpen(!isOpen)}
+              >
+                <Link to={location} className="nav-link">
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
+
+          {/* Signout Section */}
+          <li className="nav-item" onClick={() => handleLogout()}>
+            <p className="nav-link" style={{ padding: "0px" }}>
+              Signout
+            </p>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+export { Navbar };

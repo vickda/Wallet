@@ -1,0 +1,6 @@
+/* Ensure the entire viewport is used */
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
