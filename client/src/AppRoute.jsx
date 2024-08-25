@@ -12,6 +12,7 @@ import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
 import { Navbar } from "./components/Navbar/Navbar";
+import { Login } from "./components/Authentication/Login/Login";
 
 const AppRoutes = ({ user }) => {
   let profilePicUrl;
@@ -27,7 +28,7 @@ const AppRoutes = ({ user }) => {
         {/* LOGIN */}
         <Route
           path="/signin"
-          element={user ? <Navigate to="/" /> : <Authentication />}
+          element={user ? <Navigate to="/" /> : <Login />}
         />
 
         {/* 404 MISSING */}

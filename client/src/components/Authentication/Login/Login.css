@@ -20,6 +20,25 @@
   column-gap: 30px;
 }
 
+/* Logo and App Name */
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.app-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.app-name {
+  font-size: 28px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+}
+
 /* Form container styles */
 .form {
   position: absolute;
@@ -28,80 +47,6 @@
   padding: 30px;
   border-radius: 6px;
   background: #fff;
-}
-
-/* Header styles */
-header {
-  font-size: 28px;
-  font-weight: 600;
-  color: #232836;
-  text-align: center;
-}
-
-/* Form margin styling */
-form {
-  margin-top: 30px;
-}
-
-/* Container for name fields to align inputs side by side */
-.name-field {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px; /* Adjust the gap between inputs as needed */
-}
-
-/* Styles for name input fields */
-.name {
-  flex: 1; /* Make the inputs take up equal space */
-  width: 80%; /* Ensure inputs fit within the container */
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* General styles for input and button fields */
-.field {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  margin-top: 20px;
-  border-radius: 6px;
-}
-
-/* Input and button height, width, and border styling */
-.field input,
-.field button {
-  height: 100%;
-  width: 100%;
-  border: none;
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: 6px;
-}
-
-/* Specific styles for input fields */
-.field input {
-  outline: none;
-  padding: 0 15px;
-  border: 1px solid #cacaca;
-}
-
-/* Focus state styling for input fields */
-.field input:focus {
-  border-bottom-width: 2px;
-}
-
-/* Icon for password visibility toggle */
-.eye-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #8b8b8b;
-  cursor: pointer;
-  padding: 5px;
 }
 
 /* Button field styling */
@@ -115,52 +60,6 @@ form {
 /* Button hover effect */
 .field button:hover {
   background-color: #016dcb;
-}
-
-/* Styling for form link (e.g., login redirect) */
-.form-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* Styling for the form link text */
-.form-link span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #232836;
-  background: transparent;
-}
-
-/* Link styling within the form */
-.form a {
-  color: #0171d3;
-  text-decoration: none;
-}
-
-/* Hover effect for form links */
-.form-content a:hover {
-  text-decoration: underline;
-}
-
-/* Divider line styling */
-.line {
-  position: relative;
-  height: 1px;
-  width: 100%;
-  margin: 36px 0;
-  background-color: #d4d4d4;
-}
-
-/* Centered "Or" text within the divider line */
-.line::before {
-  content: "Or";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  color: #8b8b8b;
-  padding: 0 15px;
 }
 
 /* Container for buttons (e.g., social sign-in) */
@@ -212,7 +111,7 @@ form {
   margin-right: 10px;
 }
 
-/* Error MEssage */
+/* Error Message */
 .error-message {
   color: #d9534f; /* Red color for error text */
   background-color: #f2dede; /* Light red background */
