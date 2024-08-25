@@ -1,6 +1,5 @@
 /* UserProfile.css */
-body,
-html {
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -9,6 +8,13 @@ html {
 }
 
 .user-profile-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+}
+
+.user-profile {
   width: 100%;
   max-width: 600px; /* Limits the width of the form */
   padding: 20px;
@@ -29,17 +35,17 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3a3a3a; /* Slightly lighter grey */
+  background-color: #3a3a3a;
   border-radius: 8px;
   padding: 20px;
+  background: white;
 }
 
 .profile-image {
   max-width: 100%;
-  border-radius: 50%;
+  border-radius: 20%;
   object-fit: cover;
-  height: 200px;
-  width: 200px;
+  background-color: white;
 }
 
 .profile-placeholder {
@@ -82,41 +88,8 @@ input[type="file"] {
   font-size: 16px;
 }
 
-input[type="file"] {
-  display: none; /* Hide the default file input */
-}
-
-.custom-file-upload {
-  display: inline-block;
-  padding: 12px 20px;
-  background-color: #3498db; /* Blue background color */
-  color: white;
-  border: none;
-  border-radius: 25px; /* Rounded corners */
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  text-align: center;
-}
-
-.custom-file-upload:hover {
-  background-color: #2980b9; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
-}
-
-.custom-file-upload:active {
-  background-color: #1f6399; /* Even darker blue on click */
-  transform: translateY(0); /* Reset lift on click */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow on click */
-}
-
-input[type="file"] + label {
-  display: inline-block;
-  margin-top: 10px;
-  cursor: pointer;
+input[type="email"] {
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -154,9 +127,17 @@ input[type="file"] + label {
 }
 
 @media (max-width: 768px) {
+  .profile-image {
+    width: 100%;
+  }
+
   .submit-btn {
     width: 100%;
     padding: 14px;
     align-self: stretch; /* Makes the button fill the width of the container on small screens */
+  }
+
+  .user-profile-form {
+    flex-direction: column; /* Stack the form columns vertically on small screens */
   }
 }

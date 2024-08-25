@@ -14,7 +14,12 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import { Navbar } from "./components/Navbar/Navbar";
 
 const AppRoutes = ({ user }) => {
-  console.log(user);
+  let profilePicUrl;
+
+  // Set Random Profile Picture for User
+  if (user) {
+    profilePicUrl = `https://robohash.org/${user.uid}`;
+  }
 
   return (
     <Router>
@@ -32,7 +37,7 @@ const AppRoutes = ({ user }) => {
         <Route
           element={
             <>
-              <Navbar />
+              <Navbar profilePicUrl={profilePicUrl} />
               <Outlet />
             </>
           }
@@ -50,7 +55,10 @@ const AppRoutes = ({ user }) => {
           />
 
           {/* USER PROFILE */}
-          <Route path="/profile" element={<UserProfile />} />
+          <Route
+            path="/profile"
+            element={<UserProfile profilePicUrl={profilePicUrl} />}
+          />
         </Route>
       </Routes>
     </Router>

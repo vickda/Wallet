@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { Link, Navigate } from "react-router-dom";
-import "./Navbar.css";
-import logo from "../../assets/logo.jpg";
+import { Link, useNavigate } from "react-router-dom";
 
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase/firebaseConfig";
+
+import logo from "../../assets/logo.jpg";
 import UserAvatar from "./UserAvatar/UserAvatar";
 
-const Navbar = () => {
+import "./Navbar.css";
+
+const Navbar = ({ profilePicUrl }) => {
+  const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
+
   const links = [
     {
       id: 1,
@@ -31,6 +37,18 @@ const Navbar = () => {
     setOpen(!isOpen);
   };
 
+  // Handle Signout when Signout button is clicked
+  const handleLogout = () => {
+    try {
+      signOut(auth);
+
+      // Navigate back to Signin
+      navigate("/signin");
+    } catch (error) {
+      console.log("Unable to Signout", error.message);
+    }
+  };
+
   return (
     <nav className="navbar">
       {/* Hamburger & Logo Container */}
@@ -46,7 +64,8 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <UserAvatar />
+      {/* User Avatar Page */}
+      <UserAvatar profilePicUrl={profilePicUrl} handleLogout={handleLogout} />
 
       {/* Panel For Hamburger Menu with Option List */}
       <div className={`panel ${isOpen ? "open" : "close"}`}>
