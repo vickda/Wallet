@@ -4,6 +4,7 @@
 
 .profile-button {
   background: none;
+  color: white;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -37,7 +38,7 @@
 }
 
 .sign-out-button {
-  background: #ff4d4d;
+  background: #3498db;
   color: white;
   border: none;
   cursor: pointer;
@@ -51,5 +52,5 @@
 }
 
 .sign-out-button:hover {
-  background: #ff1a1a;
+  background: #056cb0;
 }

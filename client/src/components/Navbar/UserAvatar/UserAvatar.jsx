@@ -8,7 +8,8 @@ import "./UserAvatar.css"; // Import the CSS file
 
 const UserAvatar = ({ profilePicUrl }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const buttonReference = useRef(null);
+  const menuReference = useRef(null);
+  const profileButtonReference = useRef(null);
 
   // Handle Signout when Signout button is clicked
   const handleLogout = () => {
@@ -22,9 +23,13 @@ const UserAvatar = ({ profilePicUrl }) => {
 
   useEffect(() => {
     const handleMouseClick = (event) => {
-      console.log(event);
-
-      if (!buttonReference.current.contains(event.target)) {
+      console.log(event.target);
+      if (
+        menuReference.current &&
+        !menuReference.current.contains(event.target) &&
+        profileButtonReference.current &&
+        !profileButtonReference.current.contains(event.target)
+      ) {
         setShowMenu(false);
       }
     };
@@ -38,7 +43,11 @@ const UserAvatar = ({ profilePicUrl }) => {
 
   return (
     <div className="navbar-profile">
-      <button className="profile-button" onClick={() => setShowMenu(!showMenu)}>
+      <button
+        ref={profileButtonReference}
+        className="profile-button"
+        onClick={() => setShowMenu(!showMenu)}
+      >
         {profilePicUrl ? (
           <img src={profilePicUrl} alt="Profile" className="profile-pic" />
         ) : (
@@ -46,7 +55,7 @@ const UserAvatar = ({ profilePicUrl }) => {
         )}
       </button>
       <div
-        ref={buttonReference}
+        ref={menuReference}
         className={`sign-out-menu ${showMenu ? "show" : ""}`}
       >
         <button className="sign-out-button" onClick={handleLogout}>
