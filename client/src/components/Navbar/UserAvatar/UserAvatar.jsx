@@ -1,29 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
-import { signOut } from "firebase/auth";
-import { auth } from "../../../../firebase/firebaseConfig";
-
 import "./UserAvatar.css"; // Import the CSS file
 
-const UserAvatar = ({ profilePicUrl }) => {
+const UserAvatar = ({ profilePicUrl, handleLogout }) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuReference = useRef(null);
   const profileButtonReference = useRef(null);
 
-  // Handle Signout when Signout button is clicked
-  const handleLogout = () => {
-    try {
-      signOut(auth);
-      Navigate({ to: "/signin" });
-    } catch (error) {
-      console.log("Unable to Signout", error.message);
-    }
-  };
-
+  // Event listener to close the menu when a click occurs outside of it
   useEffect(() => {
     const handleMouseClick = (event) => {
-      console.log(event.target);
       if (
         menuReference.current &&
         !menuReference.current.contains(event.target) &&
@@ -43,6 +30,7 @@ const UserAvatar = ({ profilePicUrl }) => {
 
   return (
     <div className="navbar-profile">
+      {/* Profile button that toggles the visibility of the sign-out menu */}
       <button
         ref={profileButtonReference}
         className="profile-button"
@@ -54,10 +42,13 @@ const UserAvatar = ({ profilePicUrl }) => {
           <FaUserCircle size={40} />
         )}
       </button>
+
+      {/* Sign-out menu that appears when the profile button is clicked */}
       <div
         ref={menuReference}
         className={`sign-out-menu ${showMenu ? "show" : ""}`}
       >
+        {/* Sign-out button that triggers the logout process */}
         <button className="sign-out-button" onClick={handleLogout}>
           Sign Out
         </button>

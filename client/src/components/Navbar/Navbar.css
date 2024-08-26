@@ -7,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  margin-bottom: 1.5rem;
   font-size: 1.2rem;
 }
 
@@ -42,6 +41,7 @@
   height: auto;
   border-radius: 20%;
   object-fit: contain;
+  cursor: pointer;
 
   &.open {
     z-index: 10;
@@ -79,15 +79,21 @@
   cursor: pointer;
 }
 
+.nav-icon {
+  margin-right: 10px;
+}
+
 .nav-link {
-  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  margin: 0.6rem 0;
   text-decoration: none;
   color: white;
   transition: 0.3s all;
 }
 
 .nav-link:hover {
-  color: red;
+  color: #3498db;
 }
 
 @media (max-width: 768px) {

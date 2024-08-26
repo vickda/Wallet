@@ -1,88 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import "./UserProfile.css";
-import { Navbar } from "../Navbar/Navbar";
 
-const UserProfile = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [image, setImage] = useState(null);
-
-  const handleImageUpload = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log({
-      firstName,
-      lastName,
-      email,
-      image,
-    });
-  };
+const UserProfile = ({ displayName, email, phoneNumber, profilePicUrl }) => {
+  displayName = displayName || "No Name Found";
+  email = email || "No Email Found";
+  phoneNumber = phoneNumber || "123-123-1234";
 
   return (
     <>
       <div className="user-profile-container">
-        <form onSubmit={handleSubmit} className="user-profile-form">
-          <div className="image-column">
-            {image ? (
-              <img src={image} alt="Profile" className="profile-image" />
-            ) : (
-              <div className="profile-placeholder">
-                <p>No Image</p>
+        <div className="user-profile">
+          <form className="user-profile-form">
+            {/* PROFILE PICTURE */}
+            <div className="image-column">
+              <img
+                src={profilePicUrl}
+                alt="Profile"
+                className="profile-image"
+              />
+            </div>
+            <div className="data-column">
+              {/* NAME FORM GROUP */}
+              <div className="form-group">
+                <label htmlFor="displayName">Name:</label>
+                <input
+                  type="text"
+                  disabled={true}
+                  id="displayName"
+                  value={displayName}
+                />
               </div>
-            )}
-          </div>
-          <div className="data-column">
-            <div className="form-group">
-              <label htmlFor="firstName">First Name:</label>
-              <input
-                type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
+              {/* Phone Number FORM GROUP */}
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number:</label>
+                <input
+                  type="text"
+                  disabled={true}
+                  id="phoneNumber"
+                  value={phoneNumber}
+                />
+              </div>
+              {/* EMAIL FORM GROUP */}
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input type="email" id="email" disabled={true} value={email} />
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name:</label>
-              <input
-                type="text"
-                id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="imageUpload" className="custom-file-upload">
-                Upload Profile Picture
-              </label>
-              <input
-                type="file"
-                id="imageUpload"
-                accept="image/*"
-                onChange={handleImageUpload}
-              />
-            </div>
-            <button type="submit" className="submit-btn">
-              Save Profile
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -14,7 +14,13 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import { Navbar } from "./components/Navbar/Navbar";
 
 const AppRoutes = ({ user }) => {
-  console.log(user);
+  let profilePicUrl, displayName, email, phoneNumber;
+
+  // Destructure Values from User Data & set them for use
+  if (user) {
+    ({ displayName, email, phoneNumber } = user);
+    profilePicUrl = `https://robohash.org/${user.uid}.png?set=set2`;
+  }
 
   return (
     <Router>
@@ -32,7 +38,7 @@ const AppRoutes = ({ user }) => {
         <Route
           element={
             <>
-              <Navbar />
+              <Navbar profilePicUrl={profilePicUrl} />
               <Outlet />
             </>
           }
@@ -50,7 +56,17 @@ const AppRoutes = ({ user }) => {
           />
 
           {/* USER PROFILE */}
-          <Route path="/profile" element={<UserProfile />} />
+          <Route
+            path="/profile"
+            element={
+              <UserProfile
+                displayName={displayName}
+                email={email}
+                phoneNumber={phoneNumber}
+                profilePicUrl={profilePicUrl}
+              />
+            }
+          />
         </Route>
       </Routes>
     </Router>
