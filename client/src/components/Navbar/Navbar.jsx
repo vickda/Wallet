@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import {
+  FaBars,
+  FaXmark,
+  FaFlipboard,
+  FaAddressBook,
+  FaUserGroup,
+  FaUserGear,
+  FaDoorOpen,
+} from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 
 import { signOut } from "firebase/auth";
@@ -14,21 +22,31 @@ const Navbar = ({ profilePicUrl }) => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
 
+  // Navbar Options
   const links = [
     {
-      id: 1,
-      name: "People",
+      id: 0,
+      name: "Dashboard",
       location: "/",
+      icons: <FaFlipboard className="nav-icon" />,
+    },
+    {
+      id: 1,
+      name: "Contacts",
+      location: "/contacts",
+      icons: <FaAddressBook className="nav-icon" />,
     },
     {
       id: 2,
       name: "Groups",
-      location: "/group",
+      location: "/groups",
+      icons: <FaUserGroup className="nav-icon" />,
     },
     {
       id: 3,
       name: "User Profile",
       location: "/profile",
+      icons: <FaUserGear className="nav-icon" />,
     },
   ];
 
@@ -49,6 +67,12 @@ const Navbar = ({ profilePicUrl }) => {
     }
   };
 
+  // Go Home When Logo Is Click & Close Hamburger Menu if Opened
+  const navigateToDashboard = () => {
+    setOpen(false);
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
       {/* Hamburger & Logo Container */}
@@ -59,9 +83,12 @@ const Navbar = ({ profilePicUrl }) => {
         >
           {isOpen ? <FaXmark /> : <FaBars />}
         </div>
-        <Link to="/" className={`nav-logo ${isOpen && "open"}`}>
+        <div
+          className={`nav-logo ${isOpen && "open"}`}
+          onClick={navigateToDashboard}
+        >
           <img className="nav-logo" src={logo} alt="Logo" />
-        </Link>
+        </div>
       </div>
 
       {/* User Avatar Page */}
@@ -70,13 +97,14 @@ const Navbar = ({ profilePicUrl }) => {
       {/* Panel For Hamburger Menu with Option List */}
       <div className={`panel ${isOpen ? "open" : "close"}`}>
         <ul className="nav-links">
-          {links.map(({ id, name, location }) => {
+          {links.map(({ id, name, location, icons }) => {
             return (
               <li
                 key={id}
                 className="nav-link"
                 onClick={() => setOpen(!isOpen)}
               >
+                {icons}
                 <Link to={location} className="nav-link">
                   {name}
                 </Link>
@@ -85,8 +113,9 @@ const Navbar = ({ profilePicUrl }) => {
           })}
 
           {/* Signout Section */}
-          <li className="nav-item" onClick={() => handleLogout()}>
+          <li className="nav-link" onClick={() => handleLogout()}>
             <p className="nav-link" style={{ padding: "0px" }}>
+              <FaDoorOpen className="nav-icon" />
               Signout
             </p>
           </li>
