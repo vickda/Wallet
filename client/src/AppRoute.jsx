@@ -12,14 +12,14 @@ import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Login } from "./components/Authentication/Login/Login";
 
 const AppRoutes = ({ user }) => {
-  let profilePicUrl;
+  let profilePicUrl, displayName, email, phoneNumber;
 
-  // Set Random Profile Picture for User
+  // Destructure Values from User Data & set them for use
   if (user) {
-    profilePicUrl = `https://robohash.org/${user.uid}`;
+    ({ displayName, email, phoneNumber } = user);
+    profilePicUrl = `https://robohash.org/${user.uid}.png?set=set2`;
   }
 
   return (
@@ -28,7 +28,7 @@ const AppRoutes = ({ user }) => {
         {/* LOGIN */}
         <Route
           path="/signin"
-          element={user ? <Navigate to="/" /> : <Login />}
+          element={user ? <Navigate to="/" /> : <Authentication />}
         />
 
         {/* 404 MISSING */}
@@ -58,7 +58,14 @@ const AppRoutes = ({ user }) => {
           {/* USER PROFILE */}
           <Route
             path="/profile"
-            element={<UserProfile profilePicUrl={profilePicUrl} />}
+            element={
+              <UserProfile
+                displayName={displayName}
+                email={email}
+                phoneNumber={phoneNumber}
+                profilePicUrl={profilePicUrl}
+              />
+            }
           />
         </Route>
       </Routes>

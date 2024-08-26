@@ -1,27 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./UserProfile.css";
-import { Navbar } from "../Navbar/Navbar";
 
-const UserProfile = ({ profilePicUrl }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log({
-      firstName,
-      lastName,
-      email,
-    });
-  };
+const UserProfile = ({ displayName, email, phoneNumber, profilePicUrl }) => {
+  displayName = displayName || "No Name Found";
+  email = email || "No Email Found";
+  phoneNumber = phoneNumber || "123-123-1234";
 
   return (
     <>
       <div className="user-profile-container">
         <div className="user-profile">
-          <form onSubmit={handleSubmit} className="user-profile-form">
+          <form className="user-profile-form">
             {/* PROFILE PICTURE */}
             <div className="image-column">
               <img
@@ -31,44 +20,31 @@ const UserProfile = ({ profilePicUrl }) => {
               />
             </div>
             <div className="data-column">
-              {/* FIRST NAME FORM GROUP */}
+              {/* NAME FORM GROUP */}
               <div className="form-group">
-                <label htmlFor="firstName">First Name:</label>
+                <label htmlFor="displayName">Name:</label>
                 <input
                   type="text"
-                  id="firstName"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
+                  disabled={true}
+                  id="displayName"
+                  value={displayName}
                 />
               </div>
-              {/* LAST NAME FORM GROUP */}
+              {/* Phone Number FORM GROUP */}
               <div className="form-group">
-                <label htmlFor="lastName">Last Name:</label>
+                <label htmlFor="phoneNumber">Phone Number:</label>
                 <input
                   type="text"
-                  id="lastName"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
+                  disabled={true}
+                  id="phoneNumber"
+                  value={phoneNumber}
                 />
               </div>
               {/* EMAIL FORM GROUP */}
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  id="email"
-                  disabled={true}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <input type="email" id="email" disabled={true} value={email} />
               </div>
-              {/* SAVE BUTTON */}
-              <button type="submit" className="submit-btn">
-                Save Profile
-              </button>
             </div>
           </form>
         </div>
