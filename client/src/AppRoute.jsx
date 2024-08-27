@@ -12,6 +12,7 @@ import { Home } from "./components/Home/Home";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
 import { Navbar } from "./components/Navbar/Navbar";
+import { Contacts } from "./components/Contacts/Contacts";
 
 const AppRoutes = ({ user }) => {
   let profilePicUrl, displayName, email, phoneNumber;
@@ -67,6 +68,9 @@ const AppRoutes = ({ user }) => {
               />
             }
           />
+
+          {/* USER PROFILE */}
+          <Route path="/contacts" element={<Contacts />} />
         </Route>
       </Routes>
     </Router>
